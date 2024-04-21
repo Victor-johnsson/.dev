@@ -45,7 +45,7 @@ autocmd('LspAttach', {
 
 
         vim.keymap.set("n", "gd", function()
-            client = vim.lsp.get_active_clients()
+            local client = vim.lsp.get_active_clients()
 
             if client[1].name == "omnisharp" then
                 require('omnisharp_extended').lsp_definition()
@@ -57,7 +57,7 @@ autocmd('LspAttach', {
 
 
         vim.keymap.set("n", "<leader>vrr", function()
-            client = vim.lsp.get_active_clients()
+            local client = vim.lsp.get_active_clients()
 
             if client[1].name == "omnisharp" then
                 require('omnisharp_extended').lsp_references()
@@ -67,14 +67,14 @@ autocmd('LspAttach', {
         end, opts)
 
         vim.keymap.set("n", "gD", function()
-            client = vim.lsp.get_active_clients()
+            local client = vim.lsp.get_active_clients()
 
             if client[1].name == "omnisharp" then
                 require('omnisharp_extended').lsp_type_definition()
             end
         end, opts)
         vim.keymap.set("n", "<leader>vri", function()
-            client = vim.lsp.get_active_clients()
+            local client = vim.lsp.get_active_clients()
 
             if client[1].name == "omnisharp" then
                 require('omnisharp_extended').lsp_implementation()
