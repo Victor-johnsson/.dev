@@ -5,7 +5,8 @@ return {
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
             ensure_installed = {
-                "vimdoc", "lua", "c_sharp"
+                "vimdoc", "lua", "c", "c_sharp", "query",
+                "jsdoc", "typescript", "javascript"
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)

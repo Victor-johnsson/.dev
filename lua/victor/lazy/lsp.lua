@@ -8,6 +8,9 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
+        "L3MON4D3/LuaSnip",
+        "saadparwaiz1/cmp_luasnip",
+        "j-hui/fidget.nvim",
         "Hoffs/omnisharp-extended-lsp.nvim"
     },
 
@@ -20,16 +23,51 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
 
+        require("fidget").setup({})
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
+                "rust_analyzer",
+                "omnisharp",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
-
                     require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
+                        capabilities = capabilities,
+                        keys = {
+
+                            { "gd",          "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Get Definition" },
+                            { "<leader>vrr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Get References" },
+                        }
+
+                    }
+                end,
+
+                ["lua_ls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.lua_ls.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            Lua = {
+                                runtime = { version = "Lua 5.1" },
+                                diagnostics = {
+                                    globals = { "vim", "it", "describe", "before_each", "after_each" },
+                                }
+                            }
+                        }
+                    }
+                end,
+                ["omnisharp"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.omnisharp.setup {
+                        capabilities = capabilities,
+                        keys = {
+                            { "gd",          "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>",      desc = "Get Definition" },
+                            { "<leader>D",   "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>", desc = "Get Type Definition" },
+                            { "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>",      desc = "Get References" },
+                            { "<leader>vri", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",  desc = "Get Implementation" },
+                        }
                     }
                 end,
             }
@@ -38,6 +76,11 @@ return {
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                end,
+            },
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
@@ -46,6 +89,7 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = 'nvim_lsp' },
+                { name = 'luasnip' }, -- For luasnip users.
             }, {
                 { name = 'buffer' },
             })
