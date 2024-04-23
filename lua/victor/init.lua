@@ -35,6 +35,14 @@ autocmd({ "BufWritePre" }, {
     command = [[%s/\s\+$//e]],
 })
 
+local function is_omnisharp(tab, val)
+    for index, value in ipairs(tab) do
+        if value.name == val then
+            return true
+        end
+        return false
+    end
+end
 autocmd('LspAttach', {
     group = VictorGroup,
     callback = function(e)
@@ -47,10 +55,10 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "gd", function()
             local client = vim.lsp.get_active_clients()
 
-            if client[1].name == "omnisharp" then
+            if is_omnisharp(client, 'omnisharp') then
                 require('omnisharp_extended').lsp_definition()
             else
-                vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+                vim.lsp.buf.definition()
             end
         end, opts)
 
@@ -59,26 +67,18 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>vrr", function()
             local client = vim.lsp.get_active_clients()
 
-            if client[1].name == "omnisharp" then
+            if is_omnisharp(client, 'omnisharp') then
                 require('omnisharp_extended').lsp_references()
             else
                 vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
             end
         end, opts)
 
-        vim.keymap.set("n", "gD", function()
-            local client = vim.lsp.get_active_clients()
-
-            if client[1].name == "omnisharp" then
-                require('omnisharp_extended').lsp_type_definition()
-            end
+        vim.keymap.set("n", "<leader>gD", function()
+            require('omnisharp_extended').lsp_type_definition()
         end, opts)
         vim.keymap.set("n", "<leader>vri", function()
-            local client = vim.lsp.get_active_clients()
-
-            if client[1].name == "omnisharp" then
-                require('omnisharp_extended').lsp_implementation()
-            end
+            require('omnisharp_extended').lsp_implementation()
         end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
