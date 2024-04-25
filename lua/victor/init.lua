@@ -55,11 +55,11 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "gd", function()
             local client = vim.lsp.get_active_clients()
 
-            if is_omnisharp(client, 'omnisharp') then
-                require('omnisharp_extended').lsp_definition()
-            else
-                vim.lsp.buf.definition()
-            end
+            -- if is_omnisharp(client, 'omnisharp') then
+            --     require('omnisharp_extended').lsp_definition()
+            -- else
+            vim.lsp.buf.definition()
+            -- end
         end, opts)
 
 
