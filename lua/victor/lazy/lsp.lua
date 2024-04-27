@@ -11,7 +11,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
-        "Hoffs/omnisharp-extended-lsp.nvim"
+        "Decodetalkers/csharpls-extended-lsp.nvim"
     },
 
     config = function()
@@ -31,7 +31,8 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "rust_analyzer",
-                "omnisharp",
+                "csharp_ls",
+
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -60,15 +61,21 @@ return {
                         }
                     }
                 end,
-                ["omnisharp"] = function()
+                ["csharp_ls"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.omnisharp.setup {
+                    lspconfig.csharp_ls.setup {
                         capabilities = capabilities,
-                        keys = {
-                            { "gd",          "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>",      desc = "Get Definition" },
-                            { "<leader>D",   "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>", desc = "Get Type Definition" },
-                            { "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>",      desc = "Get References" },
-                            { "<leader>vri", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",  desc = "Get Implementation" },
+                        -- keys = {
+                        --     { "gd",          "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>",      desc = "Get Definition" },
+                        --     { "<leader>D",   "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>", desc = "Get Type Definition" },
+                        --     { "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>",      desc = "Get References" },
+                        --     { "<leader>vri", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",  desc = "Get Implementation" },
+                        -- }
+
+                        handlers = {
+
+                            ["textDocument/definition"] = require('csharpls_extended').handler,
+                            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
                         }
                     }
                 end,
