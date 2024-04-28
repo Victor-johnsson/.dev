@@ -9,7 +9,7 @@ return {
 
             conform.setup({
                 lua = { "stylua" },
-                python = { "isort", "black" },
+                -- python = { "isort", "black" },
                 cs = { "csharpier" },
                 format_on_save = {
 
