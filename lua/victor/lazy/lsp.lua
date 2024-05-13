@@ -38,11 +38,6 @@ return {
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities,
-                        keys = {
-
-                            { "gd",          "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Get Definition" },
-                            { "<leader>vrr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Get References" },
-                        }
 
                     }
                 end,
@@ -65,12 +60,6 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.csharp_ls.setup {
                         capabilities = capabilities,
-                        -- keys = {
-                        --     { "gd",          "<cmd>lua require('omnisharp_extended').lsp_definition()<cr>",      desc = "Get Definition" },
-                        --     { "<leader>D",   "<cmd>lua require('omnisharp_extended').lsp_type_definition()<cr>", desc = "Get Type Definition" },
-                        --     { "<leader>vrr", "<cmd>lua require('omnisharp_extended').lsp_references()<cr>",      desc = "Get References" },
-                        --     { "<leader>vri", "<cmd>lua require('omnisharp_extended').lsp_implementation()<cr>",  desc = "Get Implementation" },
-                        -- }
 
                         handlers = {
 
@@ -104,16 +93,16 @@ return {
             })
         })
 
-        vim.diagnostic.config({
-            -- update_in_insert = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
+        -- vim.diagnostic.config({
+        --     -- update_in_insert = true,
+        --     float = {
+        --         focusable = false,
+        --         style = "minimal",
+        --         border = "rounded",
+        --         source = "always",
+        --         header = "",
+        --         prefix = "",
+        --     },
+        -- })
     end
 }
