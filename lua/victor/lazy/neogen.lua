@@ -28,9 +28,6 @@ return {
         vim.keymap.set("n", "<leader>nc", function()
             neogen.generate({ type = "class" })
         end)
-
-
     end
 
 }
-
