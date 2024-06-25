@@ -18,8 +18,28 @@ return {
 
         vim.keymap.set("n", "[t", function()
             require("todo-comments").jump_prev()
-        end, { desc = "Previous todo comment" })
+        end, { desc = "Previous todo comment" }),
 
+        config = function()
+            -- local wk = require("which-key")
+            -- -- As an example, we will create the following mappings:
+            -- --  * <leader>ff find files
+            -- --  * <leader>fr show recent files
+            -- --  * <leader>fb Foobar
+            -- -- we'll document:
+            -- --  * <leader>fn new file
+            -- --  * <leader>fe edit file
+            -- -- and hide <leader>1
+            --
+            -- wk.register({
+            --     t = {
+            --         name = "Todo", -- optional group name
+            --         d = { function()
+            --             vim.cmd("TodoTelescope")
+            --         end, "Find TODO:s" }, -- create a binding with label
+            --     },
+            -- }, { prefix = "<leader>" })
+        end
 
 
     }
