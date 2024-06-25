@@ -25,7 +25,7 @@ return {
 
         require("fidget").setup({})
         require("mason").setup()
-        require("java").setup()
+        -- require("java").setup()
         require("mason-lspconfig").setup({
 
             ensure_installed = {
@@ -60,12 +60,12 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.csharp_ls.setup {
                         capabilities = capabilities,
-
-                        handlers = {
-
-                            ["textDocument/definition"] = require('csharpls_extended').handler,
-                            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
-                        }
+                        --
+                        -- handlers = {
+                        --
+                        --     ["textDocument/definition"] = require('csharpls_extended').handler,
+                        --     ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+                        -- }
                     }
                 end,
             }
