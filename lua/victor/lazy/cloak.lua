@@ -46,6 +46,14 @@ return {
                 },
             },
         })
+
+        local wk = require("which-key")
+
+        wk.register({
+            t = {
+                c = { "<cmd>CloakToggle<cr>", "Toggle Cloak" }, -- create a binding with label
+            },
+        }, { prefix = "<leader>" })
     end
 
 
