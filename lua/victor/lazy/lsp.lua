@@ -30,9 +30,8 @@ return {
 
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
                 "csharp_ls",
-
+                -- "csharpls_extended",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -56,16 +55,17 @@ return {
                         }
                     }
                 end,
-                ["csharp_ls"] = function()
+                csharp_ls = function()
+                    local pid = vim.fn.getpid()
                     local lspconfig = require("lspconfig")
                     lspconfig.csharp_ls.setup {
                         capabilities = capabilities,
-                        --
-                        -- handlers = {
-                        --
-                        --     ["textDocument/definition"] = require('csharpls_extended').handler,
-                        --     ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
-                        -- }
+                        handlers = {
+                            --
+                            -- ["textDocument/definition"] = require('csharpls_extended').handler,
+                            -- ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+                        },
+                        -- cmd = { csharp_ls },
                     }
                 end,
             }
