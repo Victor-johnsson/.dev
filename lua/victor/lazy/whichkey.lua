@@ -24,6 +24,7 @@ return {
             },
             g = {
 
+                i = { function() vim.lsp.buf.implementation() end, "Goto Implementation" },
                 l = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" }
             }
         }, { prefix = "<leader>" })

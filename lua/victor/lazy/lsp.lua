@@ -31,6 +31,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "csharp_ls",
+                "tsserver",
                 -- "csharpls_extended",
             },
             handlers = {
@@ -56,7 +57,6 @@ return {
                     }
                 end,
                 csharp_ls = function()
-                    local pid = vim.fn.getpid()
                     local lspconfig = require("lspconfig")
                     lspconfig.csharp_ls.setup {
                         capabilities = capabilities,

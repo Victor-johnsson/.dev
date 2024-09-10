@@ -17,7 +17,7 @@ return {
                     dap = {
                         -- Extra arguments for nvim-dap configuration
                         -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
-                        args = { justMyCode = false },
+                        args = { justMyCode = true },
                         -- Enter the name of your dap adapter, the default value is netcoredbg
                         adapter_name = "coreclr"
                     },
@@ -45,7 +45,7 @@ return {
         local wk = require("which-key")
         wk.register({
             n = {
-                t = { function() require("neotest").run.run({ strategy = "dap" }) end, "Run tests" },
+                t = { function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = {} }) end, "Run tests" },
             }
         }, { prefix = "<leader>" })
     end
