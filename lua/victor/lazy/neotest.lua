@@ -43,10 +43,11 @@ return {
         require("neotest-vim-test")
 
         local wk = require("which-key")
-        wk.register({
-            n = {
-                t = { function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = {} }) end, "Run tests" },
-            }
-        }, { prefix = "<leader>" })
+        wk.add({
+            { "<leader>nt", function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = {} }) end, desc = "Run tests" }
+
+
+        })
     end
 }
+

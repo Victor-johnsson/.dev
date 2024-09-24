@@ -31,7 +31,7 @@ return {
             ensure_installed = {
                 "lua_ls",
                 "csharp_ls",
-                "tsserver",
+                -- "ts_ls",
                 -- "csharpls_extended",
             },
             handlers = {

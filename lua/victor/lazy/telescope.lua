@@ -1,7 +1,7 @@
 return {
     "nvim-telescope/telescope.nvim",
 
-    tag = "0.1.8",
+    -- tag = "0.1.8",
 
 
     dependencies = {
@@ -15,22 +15,29 @@ return {
         local builtin = require('telescope.builtin')
         local wk = require("which-key")
 
-        wk.register({
-            p = {
-                name = "telescope",                                   -- optional group name
-                f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
-                s = { "<cmd>Telescope live_grep<cr>", "Live Grep" },  -- create a binding with label
-                b = { "<cmd>Telescope buffers<cr>", "Buffers" },      -- create a binding with label
-                h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },  -- create a binding with label
-                ws = { function()
+        wk.add({
+
+            { "<leader>pf", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+            { "<leader>ps", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
+            { "<leader>pb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
+            { "<leader>ph", "<cmd>Telescope help_tags<cr>",  desc = "Help Tags" },
+            {
+                "<leader>pws",
+                function()
                     local word = vim.fn.expand("<cword>")
                     builtin.grep_string({ search = word })
-                end, "Search word" }, -- create a binding with label
-                Ws = { function()
+                end,
+                desc = "Search word"
+            },
+
+            {
+                "<leader>pWs",
+                function()
                     local word = vim.fn.expand("<cWORD>")
                     builtin.grep_string({ search = word })
-                end, "Search WORD" }, -- create a binding with label
+                end,
+                desc = "Search WORD"
             },
-        }, { prefix = "<leader>" })
+        })
     end
 }

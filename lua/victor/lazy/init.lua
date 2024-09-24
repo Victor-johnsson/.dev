@@ -1,4 +1,7 @@
 return {
+      rocks = {
+    enabled = false,
+  },
 
     {
         "nvim-lua/plenary.nvim",

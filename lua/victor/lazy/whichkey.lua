@@ -10,62 +10,35 @@ return {
 
 
 
-        wk.register({
+        wk.add({
+            { "<leader>Y",  [["=Y"]] },
+            { "<leader>k",  "<cmd>lnext<CR>zz" },
+            { "<leader>j",  "<cmd>lprev<CR>zz" },
+            { "<leader>s",  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Replace word in whole file", noremap = false },
+            { "<leader>f",  vim.lsp.buf.format,                                     desc = "Format document" },
+            { "<leader>nr", "<cmd>CellularAutomaton make_it_rain<CR>",              desc = "Make It Rain" },
+            { "<leader>gi", function() vim.lsp.buf.implementation() end,            desc = "Goto Implementation" },
 
-            Y = { [["=Y"]] },
-            k = { "<cmd>lnext<CR>zz" },
-            j = { "<cmd>lprev<CR>zz" },
-            s = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace word in whole file", noremap = false },
-            f = { vim.lsp.buf.format, "Format document" },
-            m = {
-
-                r = { "<cmd>CellularAutomaton make_it_rain<CR>", "Make It Rain" }
+            { "J",          "mzJ`z" },
+            { "<C-u>",      "<C-u>zz" },
+            { "<C-k>",      "<cmd>cnext<CR>zz",                                     desc = "Next Item" },
+            { "<C-j>",      "<cmd>cprev<CR>zz",                                     desc = "Prev Item" },
+            {
+                mode = { "n", "v" },
+                { "<leader>y", [["+y"]] },
+                { "<leader>d", [["_d]] },
 
             },
-            g = {
-
-                i = { function() vim.lsp.buf.implementation() end, "Goto Implementation" },
-                l = { "<cmd>CellularAutomaton game_of_life<CR>", "Game of Life" }
-            }
-        }, { prefix = "<leader>" })
-
-        wk.register({
-
-            J = { "mzJ`z" },
-
-            ["C-u"] = { "<C-u>zz" },
-            ["C-k"] = { "<cmd>cnext<CR>zz", "Next Item" },
-            ["C-j"] = { "<cmd>cprev<CR>zz", "Prev Item" }
-
-        }, {})
-
-
-        wk.register({
-            y = { [["+y"]] },
-            d = { [["_d]] }
-        }, { prefix = "<leader>", mode = { "n", "v" } })
-
-        wk.register({
-            p = { [["_dP]] }
-
-        }, { prefix = "<leader>", mode = "x" })
-
-        wk.register({
-            J = { ":m '>+1<CR>gv=gv" },
-            K = { ":m '<-2<CR>gv=gv" },
-
-        }, { mode = "v" })
+            {
+                mode = { "x" },
+                { "<leader>p", [["_dP]] },
+            },
+            {
+                mode = { "v" },
+                { "<leader>J", ":m '>+1<CR>gv=gv" },
+                { "<leader>K", ":m '<-2<CR>gv=gv" },
+            },
+        })
     end
 
 }
-
-
---
--- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
--- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
---
--- -- This is going to get me cancelled
---
--- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
---
--- vim.keymap.set("t", '<Esc>', '<C-\\><C-n>', { noremap = true })

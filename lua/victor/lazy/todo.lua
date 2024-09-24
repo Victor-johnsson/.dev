@@ -11,29 +11,39 @@ return {
     config = function()
         require("todo-comments").setup()
         local wk = require("which-key")
-        wk.register({
-            t = {
-                d = { function()
-                    vim.cmd("TodoTelescope")
-                end, "Find TODO:s" }, -- create a binding with label
-                q = {
+        wk.add({
 
-                    function()
-                        vim.cmd("TodoQuickFix")
-                    end,
-                    "Todo QuickFix"
-                }
+            {
+                "<leader>td",
+                function()
+                    vim.cmd("TodoTelescope")
+                end,
+                desc = "Find TODO:s"
             },
-        }, { prefix = "<leader>" })
-        wk.register({
-            ["[t"] = { function()
-                require("todo-comments").jump_prev()
-            end, "Previous TODO" }, -- create a binding with label
-            ["]t"] = { function()
-                require("todo-comments").jump_next()
-            end, "Next TODO" }, -- create a binding with label
-        }, {})
+            {
+                "<leader>tq",
+                function()
+                    vim.cmd("TodoQuickFix")
+                end,
+                desc = "TODO QuickFix"
+            },
+            {
+                "[t",
+                function()
+                    require("todo-comments").jump_prev()
+                end,
+                desc = "Previous TODO"
+            },
+            {
+                "]t",
+                function()
+                    require("todo-comments").jump_next()
+                end,
+                desc = "Next TODO"
+            }
+        })
     end
 
 
 }
+
