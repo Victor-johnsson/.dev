@@ -32,6 +32,7 @@ return {
                 "lua_ls",
                 "csharp_ls",
                 -- "ts_ls",
+                "helm_ls"
                 -- "csharpls_extended",
             },
             handlers = {
@@ -62,8 +63,8 @@ return {
                         capabilities = capabilities,
                         handlers = {
                             --
-                            -- ["textDocument/definition"] = require('csharpls_extended').handler,
-                            -- ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
+                            ["textDocument/definition"] = require('csharpls_extended').handler,
+                            ["textDocument/typeDefinition"] = require('csharpls_extended').handler,
                         },
                         -- cmd = { csharp_ls },
                     }
