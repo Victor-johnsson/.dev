@@ -36,7 +36,7 @@ return {
                     local word = vim.fn.expand("<cWORD>")
                     builtin.grep_string({ search = word })
                 end,
-                desc = "Search WORD"
+                desc = "Search WORD im on!"
             },
         })
     end

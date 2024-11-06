@@ -1,0 +1,130 @@
+return {
+    -- -- OmniSharp configuration
+    -- {
+    --     "OmniSharp/omnisharp-vim",
+    --     ft = "cs", -- Only load for C# files
+    --     init = function()
+    --         vim.g.OmniSharp_server_use_net6 = 1
+    --     end,
+    --     dependencies = {
+    --         "dense-analysis/ale",   -- ALE dependency
+    --         "folke/which-key.nvim", -- WhichKey dependency
+    --     },
+    --     config = function()
+    --         -- Configure completion options
+    --         if vim.fn.has('patch-8.1.1880') == 1 then
+    --             vim.opt.completeopt = "longest,menuone,popuphidden"
+    --             -- Highlight the completion documentation popup
+    --             vim.opt.completepopup = "highlight:Pmenu,border:off"
+    --         else
+    --             vim.opt.completeopt = "longest,menuone,preview"
+    --             vim.opt.previewheight = 5
+    --         end
+    --
+    --         -- ALE configuration for C#
+    --         vim.g.ale_linters = { cs = { 'OmniSharp' } }
+    --
+    --         --     wk.add({
+    --         --         { "<leader>Y",  [["=Y"]] },
+    --         --         { "<leader>k",  "<cmd>lnext<CR>zz" },
+    --         --         { "<leader>j",  "<cmd>lprev<CR>zz" },
+    --         --         { "<leader>s",  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Replace word in whole file", noremap = false },
+    --         --         { "<leader>f",  vim.lsp.buf.format,                                     desc = "Format document" },
+    --         --         { "<leader>nr", "<cmd>CellularAutomaton make_it_rain<CR>",              desc = "Make It Rain" },
+    --         --         { "<leader>gi", function() vim.lsp.buf.implementation() end,            desc = "Goto Implementation" },
+    --         --
+    --         --         { "J",          "mzJ`z" },
+    --         --         { "<C-u>",      "<C-u>zz" },
+    --         --         { "<C-k>",      "<cmd>cnext<CR>zz",                                     desc = "Next Item" },
+    --         --         { "<C-j>",      "<cmd>cprev<CR>zz",                                     desc = "Prev Item" },
+    --         --         {
+    --         --             mode = { "n", "v" },
+    --         --             { "<leader>y", [["+y"]] },
+    --         --             { "<leader>d", [["_d]] },
+    --         --
+    --         --         },
+    --         --         {
+    --         --             mode = { "x" },
+    --         --             { "<leader>p", [["_dP]] },
+    --         --         },
+    --         --         {
+    --         --             mode = { "v" },
+    --         --             { "<leader>J", ":m '>+1<CR>gv=gv" },
+    --         --             { "<leader>K", ":m '<-2<CR>gv=gv" },
+    --         --         },
+    --         --     })
+    --         --     wk.add({
+    --         --         { "<leader>nat", function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = {} }) end,   desc = "Run all tests" },
+    --         --         { "<leader>nt",  function() require("neotest").run.run() end,                                                      desc = "Run tests" }
+    --         --
+    --         --
+    --         --     })
+    --         -- Setup WhichKey group for OmniSharp
+    --         local wk = require("which-key")
+    --         wk.add({
+    --                 name = "+OmniSharp",
+    --                 { "<leader>osfu",  "<Plug>(omnisharp_find_usages)",             desc = "Find Usages" },
+    --                 { "<leader>osfi",  "<Plug>(omnisharp_find_implementations)",    desc = "Find Implementations" },
+    --                 { "<leader>ospd",  "<Plug>(omnisharp_preview_definition)",      desc = "Preview Definition" },
+    --                 { "<leader>ospi",  "<Plug>(omnisharp_preview_implementations)", desc = "Preview Implementations" },
+    --                 { "<leader>ost",   "<Plug>(omnisharp_type_lookup)",             desc = "Type Lookup" },
+    --                 { "<leader>osd",   "<Plug>(omnisharp_documentation)",           desc = "Documentation" },
+    --                 { "<leader>osfs",  "<Plug>(omnisharp_find_symbol)",             desc = "Find Symbol" },
+    --                 { "<leader>osfx",  "<Plug>(omnisharp_fix_usings)",              desc = "Fix Usings" },
+    --                 { "<leader>osgcc", "<Plug>(omnisharp_global_code_check)",       desc = "Global Code Check" },
+    --                 { "<leader>osca",  "<Plug>(omnisharp_code_actions)",            desc = "Code Actions" },
+    --                 { "<leader>os.",   "<Plug>(omnisharp_code_action_repeat)",      desc = "Repeat Code Action" },
+    --                 { "<leader>os=",   "<Plug>(omnisharp_code_format)",             desc = "Format Code" },
+    --                 { "<leader>osnm",  "<Plug>(omnisharp_rename)",                  desc = "Rename" },
+    --                 { "<leader>osre",  "<Plug>(omnisharp_restart_server)",          desc = "Restart Server" },
+    --                 { "<leader>osst",  "<Plug>(omnisharp_start_server)",            desc = "Start Server" },
+    --                 { "<leader>ossp",  "<Plug>(omnisharp_stop_server)",             desc = "Stop Server" },
+    --
+    --                 { "gd",            "<Plug>(omnisharp_go_to_definition)",        desc = "Go to Definition" },
+    --                 { "[[",            "<Plug>(omnisharp_navigate_up)",             desc = "Navigate Up" },
+    --                 { "]]",            "<Plug>(omnisharp_navigate_down)",           desc = "Navigate Down" },
+    --                 { "<C-\\>",        "<Plug>(omnisharp_signature_help)",          desc = "Signature Help" },
+    --             },
+    --             -- Navigation mappings
+    --             {
+    --                 buffer = true, -- Buffer local mappings
+    --                 mode = "n",    -- Normal mode
+    --             })
+    --
+    --         -- Visual mode mappings
+    --         wk.add({
+    --                 name = "+OmniSharp",
+    --                 { "<leader>ca", "<Plug>(omnisharp_code_actions)",       desc = "Code Actions" },
+    --                 { "<leader>.",  "<Plug>(omnisharp_code_action_repeat)", desc = "Repeat Code Action" },
+    --             },
+    --             {
+    --                 buffer = true,
+    --                 mode = "v", -- Visual mode
+    --             })
+    --
+    --         -- Auto commands for OmniSharp
+    --         vim.api.nvim_create_autocmd("FileType", {
+    --             pattern = "cs",
+    --             callback = function()
+    --                 -- Show type information automatically when the cursor stops moving
+    --                 vim.api.nvim_create_autocmd("CursorHold", {
+    --                     pattern = "*.cs",
+    --                     callback = function()
+    --                         vim.cmd("OmniSharpTypeLookup")
+    --                     end,
+    --                 })
+    --
+    --                 -- Insert mode signature help
+    --                 vim.keymap.set("i", "<C-\\>", "<Plug>(omnisharp_signature_help)", {
+    --                     silent = true,
+    --                     buffer = true,
+    --                     desc = "Signature Help"
+    --                 })
+    --             end,
+    --         })
+    --
+    --         -- Uncomment to enable snippet completion
+    --         -- vim.g.OmniSharp_want_snippet = 1
+    --     end,
+    -- }
+}

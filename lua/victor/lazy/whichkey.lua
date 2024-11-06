@@ -39,6 +39,12 @@ return {
                 { "<leader>K", ":m '<-2<CR>gv=gv" },
             },
         })
+        wk.add({
+            { "<leader>nat", function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = {} }) end,   desc = "Run all tests" },
+            { "<leader>nt",  function() require("neotest").run.run() end,                                                      desc = "Run tests" }
+
+
+        })
     end
 
 }
