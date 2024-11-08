@@ -8,7 +8,7 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.g.cursorhold_updatetime = 100
+vim.opt.updatetime = 3000
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
