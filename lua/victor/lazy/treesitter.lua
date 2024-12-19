@@ -1,6 +1,14 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    init = function()
+        vim.filetype.add({
+            extension = {
+                csproj = "xml",
+                props = "xml"
+            },
+        })
+    end,
     config = function()
         require("nvim-treesitter.configs").setup({
             -- A list of parser names, or "all"
