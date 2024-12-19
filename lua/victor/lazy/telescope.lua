@@ -29,7 +29,7 @@ return {
 
     wk.add({
 
-      { "<leader>pf", "<cmd>Telescope git_files<cr>",  desc = "Git File" },
+      { "<leader>pf", "<cmd>Telescope git_files show_untracked=true<cr>",  desc = "Git File" },
       { "<leader>pa", "<cmd>Telescope find_files<cr>", desc = "Find File" },
       { "<leader>ps", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
       { "<leader>pb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
