@@ -1,23 +1,14 @@
 vim.g.mapleader = " "
-
-
-
-
-
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
-
-
--- -- Remap 'Shift+R' to start recording macros, mimicking 'q'
--- vim.keymap.set(
---     'n',
---     '<leader>q',
---     function()
---         vim.cmd('normal! q')
---     end,
---     { noremap = true, silent = true })
--- vim.keymap.set('v', '<leader>q', 'q', { noremap = true, silent = true })
---
--- -- -- Optional: Disable 'q' for recording to avoid conflicts
--- vim.keymap.set('n', 'q', '<Nop>', { noremap = true, silent = true })
--- vim.keymap.set('v', 'q', '<Nop>', { noremap = true, silent = true })
+vim.api.nvim_create_user_command("Format", function(args)
+    local range = nil
+    if args.count ~= -1 then
+        local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+        range = {
+            start = { args.line1, 0 },
+            ["end"] = { args.line2, end_line:len() },
+        }
+    end
+    require("conform").format({ async = true, lsp_format = "fallback", range = range })
+end, { range = true })
