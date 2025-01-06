@@ -17,13 +17,14 @@ return {
     local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     require("mason").setup()
-    require("java").setup()
+    -- require("java").setup()
     require("mason-lspconfig").setup({
 
       ensure_installed = {
         "lua_ls",
         "omnisharp",
         "helm_ls",
+        "gopls"
       },
       handlers = {
         function(server_name) -- default handler (optional)
@@ -48,6 +49,20 @@ return {
           }
         end,
 
+        gopls = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.gopls.setup({
+            settings = {
+              gopls = {
+                analyses = {
+                  unusedparams = true,
+                },
+                staticcheck = true,
+                gofumpt = true,
+              },
+            },
+          })
+        end,
         omnisharp = function()
           local lspconfig = require("lspconfig")
           lspconfig.omnisharp.setup {
