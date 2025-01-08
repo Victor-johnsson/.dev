@@ -29,7 +29,19 @@ return {
 
     wk.add({
 
-      { "<leader>pf", "<cmd>Telescope git_files show_untracked=true<cr>",  desc = "Git File" },
+      {
+        "<leader>pf",
+        function()
+          local in_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
+          if in_git_repo then
+            require("telescope.builtin").git_files({ show_untracked = true })
+          else
+            require("telescope.builtin").find_files()
+          end
+        end,
+        desc = "Find Files (Git/All)"
+
+      },
       { "<leader>pa", "<cmd>Telescope find_files<cr>", desc = "Find File" },
       { "<leader>ps", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
       { "<leader>pb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
