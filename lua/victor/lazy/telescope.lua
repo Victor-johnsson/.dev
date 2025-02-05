@@ -24,45 +24,5 @@ return {
 
     })
 
-    local builtin = require('telescope.builtin')
-    local wk = require("which-key")
-
-    wk.add({
-
-      {
-        "<leader>pf",
-        function()
-          local in_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1] == "true"
-          if in_git_repo then
-            require("telescope.builtin").git_files({ show_untracked = true })
-          else
-            require("telescope.builtin").find_files()
-          end
-        end,
-        desc = "Find Files (Git/All)"
-
-      },
-      { "<leader>pa", "<cmd>Telescope find_files<cr>", desc = "Find File" },
-      { "<leader>ps", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
-      { "<leader>pb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
-      { "<leader>ph", "<cmd>Telescope help_tags<cr>",  desc = "Help Tags" },
-      {
-        "<leader>pws",
-        function()
-          local word = vim.fn.expand("<cword>")
-          builtin.grep_string({ search = word })
-        end,
-        desc = "Search word"
-      },
-
-      {
-        "<leader>pWs",
-        function()
-          local word = vim.fn.expand("<cWORD>")
-          builtin.grep_string({ search = word })
-        end,
-        desc = "Search WORD im on!"
-      },
-    })
   end
 }

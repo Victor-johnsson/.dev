@@ -40,6 +40,11 @@ autocmd('TextYankPost', {
   end,
 })
 
+
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
 autocmd({ "BufWritePre" }, {
   group = VictorGroup,
   pattern = "*",

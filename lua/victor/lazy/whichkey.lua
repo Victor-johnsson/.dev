@@ -11,10 +11,10 @@ return {
 
 
     wk.add({
-      { "<leader>Y", [["=Y"]] },
+      { "<leader>Y", [["=]] },
       { "<leader>k", "<cmd>lnext<CR>zz" },
       { "<leader>j", "<cmd>lprev<CR>zz" },
-      { "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Replace word in whole file", noremap = false },
+      -- { "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Replace word in whole file", noremap = false },
       {
         "<leader>f",
         function()
