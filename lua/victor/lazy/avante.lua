@@ -77,11 +77,11 @@ return {
             hints = { enabled = true },
             windows = {
                 ---@type "right" | "left" | "top" | "bottom"
-                position = "right", -- the position of the sidebar
-                wrap = true, -- similar to vim.o.wrap
-                width = 30, -- default % based on available width
+                position = "right",   -- the position of the sidebar
+                wrap = true,          -- similar to vim.o.wrap
+                width = 30,           -- default % based on available width
                 sidebar_header = {
-                    enabled = true, -- true, false to enable/disable the header
+                    enabled = true,   -- true, false to enable/disable the header
                     align = "center", -- left, center, right for title
                     rounded = true,
                 },
@@ -94,7 +94,7 @@ return {
                     start_insert = true, -- Start insert mode when opening the edit window
                 },
                 ask = {
-                    floating = false, -- Open the 'AvanteAsk' prompt in a floating window
+                    floating = false,    -- Open the 'AvanteAsk' prompt in a floating window
                     start_insert = true, -- Start insert mode when opening the ask window
                     border = "rounded",
                     ---@type "ours" | "theirs"
@@ -133,12 +133,12 @@ return {
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
         --- The below dependencies are optional,
-        "echasnovski/mini.pick",     -- for file_selector provider mini.pick
+        "echasnovski/mini.pick",         -- for file_selector provider mini.pick
         "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-        "hrsh7th/nvim-cmp",          -- autocompletion for avante commands and mentions
-        "ibhagwan/fzf-lua",          -- for file_selector provider fzf
-        "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-        "zbirenbaum/copilot.lua",    -- for providers='copilot'
+        "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+        "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+        "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+        "zbirenbaum/copilot.lua",        -- for providers='copilot'
         {
             -- support for image pasting
             "HakonHarnes/img-clip.nvim",
