@@ -9,7 +9,8 @@ return {
         explorer = {
             enabled = true,
         },
-        animate = {enabled = true,
+        animate = {
+            enabled = true,
 
             duration = 20,
             easing = "linear",
@@ -25,7 +26,15 @@ return {
         quickfile = { enabled = true },
         scope = { enabled = true },
         scroll = { enabled = true },
-        statuscolumn = { enabled = true },
+        statuscolumn = {
+            enabled = true,
+
+            left = {"mark", "sign" },
+            right = {"fold", "git"},
+
+            refresh = 50,
+
+        },
         words = { enabled = true },
         styles = {
             notification = {

@@ -13,6 +13,7 @@ return {
     wk.add({
       { "<leader>Y", [["=]] },
       { "<leader>k", "<cmd>lnext<CR>zz" },
+
       { "<leader>j", "<cmd>lprev<CR>zz" },
       -- { "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], desc = "Replace word in whole file", noremap = false },
       {
@@ -26,7 +27,7 @@ return {
         end,
         desc = "Format document"
       },
-      { "<leader>nr", "<cmd>CellularAutomaton make_it_rain<CR>",   desc = "Make It Rain" },
+      { "<leader>mir", "<cmd>CellularAutomaton make_it_rain<CR>",   desc = "Make It Rain" },
       { "<leader>gi", function() vim.lsp.buf.implementation() end, desc = "Goto Implementation" },
 
       { "J",          "mzJ`z" },
@@ -51,7 +52,11 @@ return {
     })
     wk.add({
       { "<leader>nat", function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = {} }) end, desc = "Run all tests" },
-      { "<leader>nt",  function() require("neotest").run.run() end,                                                    desc = "Run tests" }
+      { "<leader>nt",  function() require("neotest").run.run() end,                                                    desc = "Run tests" },
+
+
+      { "<leader>nb", "<cmd>DotnetBuild<CR>", desc = "Build .NET project" },
+      { "<leader>nr", "<cmd>AspireRun<CR>", desc = "Run Aspire project" },
 
 
     })

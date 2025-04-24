@@ -1,7 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
 
-  run = "make install_jsregexp",
   dependencies = {
     'saghen/blink.cmp',
     "williamboman/mason.nvim",
