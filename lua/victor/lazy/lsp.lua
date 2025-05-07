@@ -21,6 +21,7 @@ return {
             "github:mason-org/mason-registry",
         },
     }
+    -- require('java').setup({})
     require("mason-lspconfig").setup({
 
       ensure_installed = {
@@ -90,9 +91,21 @@ return {
           }
         end,
 
+        bicep = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.bicep.setup {
+                filetypes = { "bicep" },
+          }
+        end,
         yamlls = function()
           local lspconfig = require("lspconfig")
           lspconfig.yamlls.setup {
+          }
+        end,
+        jdtls = function()
+          local lspconfig = require("lspconfig")
+          lspconfig.jdtls.setup {
+            capabilities = capabilities,
           }
         end,
       },
