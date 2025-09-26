@@ -5,5 +5,14 @@ return {
     ---@type RoslynNvimConfig
     opts = {
         -- your configuration comes here; leave empty for default settings
+
+        broad_search = true,
+        vim.treesitter.language.register("c_sharp", "csharp"),
+        vim.lsp.inlay_hint.enable()
+
+
+
+
     }
+
 }
