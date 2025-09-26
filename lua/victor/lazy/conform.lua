@@ -9,8 +9,8 @@ return {
     end,
     formatters_by_ft = {
       props = { "xmlformat" },
-      cs = { "csharpier" }
-
+      cs = { "csharpier" },
+      yaml = { "yamlfmt" }
     },
 
     formatters = {
@@ -30,6 +30,10 @@ return {
 
         command = "dotnet-csharpier",
         args = { "--write-stdout" }
+      },
+      yamlfmt = {
+        command = "yamlfmt",
+        -- args = { "/dev/stdin" }
       }
 
 

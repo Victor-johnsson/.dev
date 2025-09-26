@@ -8,8 +8,6 @@ return {
     config = function()
         local wk = require("which-key")
 
-
-
         wk.add({
             { "<leader>Y",  [["=]] },
             { "<leader>k",  "<cmd>lnext<CR>zz" },
