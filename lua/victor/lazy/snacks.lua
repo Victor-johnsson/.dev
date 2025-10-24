@@ -4,9 +4,12 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-        bigfile = { enabled = true },
+        bigfile = { enabled = false },
         dashboard = { enabled = true },
         explorer = {
+            enabled = true,
+        },
+        image = {
             enabled = true,
         },
         animate = {

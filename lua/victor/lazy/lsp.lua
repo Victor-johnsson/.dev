@@ -28,7 +28,8 @@ return {
                 "lua_ls",
                 "helm_ls",
                 "gopls",
-                "zls"
+                "zls",
+                "ts_ls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -59,12 +60,30 @@ return {
                         capabilities = capabilities,
                     })
                 end,
+                ts_ls = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ts_ls.setup({
+                        capabilities = capabilities,
+                    })
+                end,
                 bufls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.bufls.setup({
                         capabilities = capabilities,
                     })
                 end,
+                html = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.html.setup({
+                        capabilities = capabilities,
+                    })
+                end,
+                -- emmet_ls = function()
+                --     local lspconfig = require("lspconfig")
+                --     lspconfig.emmet_ls.setup({
+                --         capabilities = capabilities,
+                --     })
+                -- end,
                 vim.lsp.config("roslyn", {
                     settings = {
                         ["csharp|inlay_hints"] = {

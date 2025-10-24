@@ -26,7 +26,7 @@ return {
                 desc = "Format document"
             },
             {
-                "<C-i>",
+                "<D-i>",
                 function()
                     vim.diagnostic.open_float({
                         border = "rounded",
@@ -52,9 +52,9 @@ return {
             { "]d",          function() vim.diagnostic.get_next() end,      desc = "Next Diagnostic" },
             { "[d",          function() vim.diagnostic.get_prev() end,      desc = "Previous Diagnostic" },
             { "J",           "mzJ`z" },
-            { "<C-u>",       "<C-u>zz" },
-            { "<C-k>",       "<cmd>cnext<CR>zz",                            desc = "Next Item" },
-            { "<C-j>",       "<cmd>cprev<CR>zz",                            desc = "Prev Item" },
+            { "<D-u>",       "<C-u>zz" },
+            { "<D-k>",       "<cmd>cnext<CR>zz",                            desc = "Next Item" },
+            { "<D-j>",       "<cmd>cprev<CR>zz",                            desc = "Prev Item" },
             {
                 mode = { "n", "v" },
                 { "<leader>y", [["+y"]] },
@@ -62,7 +62,7 @@ return {
 
             },
 
-            { mode = { "i" },      "<C-h>",      function() vim.lsp.buf.signature_help() end, desc = "Signature Help" },
+            { mode = { "i" },      "<D-h>",      function() vim.lsp.buf.signature_help() end, desc = "Signature Help" },
             { mode = { "n", "v" }, "<leader>ca", function() vim.lsp.buf.code_action() end,    desc = "Code Action" },
             { mode = { "n", "v" }, "<leader>cl", function() vim.lsp.codelens.run() end,       desc = "codelens" },
 
@@ -79,12 +79,6 @@ return {
         wk.add({
             { "<leader>nat", function() require("neotest").run.run({ vim.fn.expand("%"), dotnet_additional_args = {} }) end, desc = "Run all tests" },
             { "<leader>nt",  function() require("neotest").run.run() end,                                                    desc = "Run tests" },
-
-
-            { "<leader>nb",  "<cmd>DotnetBuild<CR>",                                                                         desc = "Build .NET project" },
-            { "<leader>nr",  "<cmd>AspireRun<CR>",                                                                           desc = "Run Aspire project" },
-
-
         })
     end
 

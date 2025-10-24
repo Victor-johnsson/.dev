@@ -1,51 +1,52 @@
 return {
-  'stevearc/conform.nvim',
-  opts = {
-    format_on_save = function()
-      return {
-        timeout_ms = 900,
-        lsp_fallback = false
-      }
-    end,
-    formatters_by_ft = {
-      props = { "xmlformat" },
-      cs = { "csharpier" },
-      yaml = { "yamlfmt" }
-    },
+    'stevearc/conform.nvim',
+    opts = {
+        format_on_save = function()
+            return {
+                timeout_ms = 900,
+                lsp_fallback = false
+            }
+        end,
+        formatters_by_ft = {
+            props = { "xmlformat" },
+            xml = { "xmlformat" },
+            yaml = { "yamlfmt" },
+            json = { "jq" },
+            javascriptreact = { "prettier" },
+            typescriptreact = { "prettier" },
+            html = { "prettier" },
 
-    formatters = {
-
-      xmlformat = {
-        command = vim.fn.stdpath("data") .. "/mason/bin/xmlformat",
-        args = {
-          "--indent", "2",
-          "--preserve-whitespace",
-          "--multiple-attributes-on-new-line",
-          "--compress",
-          "--preserve-format",
-          "-",
         },
-      },
-      csharpier = {
 
-        command = "dotnet-csharpier",
-        args = { "--write-stdout" }
-      },
-      yamlfmt = {
-        command = "yamlfmt",
-        -- args = { "/dev/stdin" }
-      }
+        formatters = {
+
+            xmlformat = {
+                command = vim.fn.stdpath("data") .. "/mason/bin/xmlformat",
+                args = {
+                    "--indent", "2",
+                    "-",
+                },
+            },
+            yamlfmt = {
+                command = "yamlfmt",
+                -- args = { "/dev/stdin" }
+            },
+            jq = {
+                command = "jq",
+                args = { "." },
+            }
 
 
-    }
-  },
-  init = function()
-    vim.filetype.add({
-      extension = {
-        props = "xml",
-      },
-    })
-  end,
+
+        }
+    },
+    init = function()
+        vim.filetype.add({
+            extension = {
+                props = "xml",
+            },
+        })
+    end,
 }
 
 
