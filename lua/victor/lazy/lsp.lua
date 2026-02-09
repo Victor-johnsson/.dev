@@ -54,6 +54,14 @@ return {
                     }
                 end,
 
+
+                copilot = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.zls.setup({
+                        capabilities = capabilities,
+                    })
+
+                end,
                 zls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
@@ -66,9 +74,16 @@ return {
                         capabilities = capabilities,
                     })
                 end,
+
                 bufls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.bufls.setup({
+                        capabilities = capabilities,
+                    })
+                end,
+                pyright = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.pyright.setup({
                         capabilities = capabilities,
                     })
                 end,
@@ -136,20 +151,22 @@ return {
                         },
                         yamlls = {
                             enabled = true,
-                            path = "yaml-language-server"
+                            path = "yaml-language-server",
                         }
                     }
                 end,
 
                 bicep = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.bicep.setup {
-                        filetypes = { "bicep" },
+                    lspconfig.bicep_lsp.setup {
                     }
                 end,
                 yamlls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.yamlls.setup {
+                        completions = true,
+                        hover = true,
+                        validate = true
                     }
                 end,
                 jdtls = function()
