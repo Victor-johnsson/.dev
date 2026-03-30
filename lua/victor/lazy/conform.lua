@@ -12,6 +12,8 @@ return {
             xml = { "xmlformat" },
             yaml = { "yamlfmt" },
             json = { "jq" },
+            javascript = { "prettier" },
+            typescript = { "prettier" },
             javascriptreact = { "prettier" },
             typescriptreact = { "prettier" },
             html = { "prettier" },

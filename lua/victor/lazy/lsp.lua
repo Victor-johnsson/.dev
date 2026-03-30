@@ -29,7 +29,10 @@ return {
                 "helm_ls",
                 "gopls",
                 "zls",
-                "ts_ls"
+                "ts_ls",
+                "pyright",
+                "ruff",
+                "eslint"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -57,7 +60,7 @@ return {
 
                 copilot = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.zls.setup({
+                    lspconfig.copilot.setup({
                         capabilities = capabilities,
                     })
 
@@ -72,6 +75,47 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.ts_ls.setup({
                         capabilities = capabilities,
+                        on_attach = function(client)
+                            client.server_capabilities.documentFormattingProvider = false
+                        end,
+                        settings = {
+                            typescript = {
+                                suggest = {
+                                    completeFunctionCalls = true,
+                                },
+                                updateImportsOnFileMove = {
+                                    enabled = "always",
+                                },
+                                inlayHints = {
+                                    includeInlayParameterNameHints = "all",
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                    includeInlayFunctionParameterTypeHints = true,
+                                    includeInlayVariableTypeHints = true,
+                                    includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                                    includeInlayPropertyDeclarationTypeHints = true,
+                                    includeInlayFunctionLikeReturnTypeHints = true,
+                                    includeInlayEnumMemberValueHints = true,
+                                },
+                            },
+                            javascript = {
+                                suggest = {
+                                    completeFunctionCalls = true,
+                                },
+                                updateImportsOnFileMove = {
+                                    enabled = "always",
+                                },
+                                inlayHints = {
+                                    includeInlayParameterNameHints = "all",
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                    includeInlayFunctionParameterTypeHints = true,
+                                    includeInlayVariableTypeHints = true,
+                                    includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                                    includeInlayPropertyDeclarationTypeHints = true,
+                                    includeInlayFunctionLikeReturnTypeHints = true,
+                                    includeInlayEnumMemberValueHints = true,
+                                },
+                            },
+                        },
                     })
                 end,
 
@@ -84,6 +128,31 @@ return {
                 pyright = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.pyright.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            pyright = {
+                                disableOrganizeImports = false,
+                            },
+                            python = {
+                                analysis = {
+                                    autoImportCompletions = true,
+                                    diagnosticMode = "workspace",
+                                    typeCheckingMode = "basic",
+                                    useLibraryCodeForTypes = true,
+                                },
+                            },
+                        },
+                    })
+                end,
+                ruff = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ruff.setup({
+                        capabilities = capabilities,
+                    })
+                end,
+                eslint = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.eslint.setup({
                         capabilities = capabilities,
                     })
                 end,
@@ -127,6 +196,7 @@ return {
                 gopls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.gopls.setup({
+                        capabilities = capabilities,
                         settings = {
                             gopls = {
                                 analyses = {
@@ -164,9 +234,14 @@ return {
                 yamlls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.yamlls.setup {
-                        completions = true,
-                        hover = true,
-                        validate = true
+                        capabilities = capabilities,
+                        settings = {
+                            yaml = {
+                                completion = true,
+                                hover = true,
+                                validate = true,
+                            },
+                        },
                     }
                 end,
                 jdtls = function()
