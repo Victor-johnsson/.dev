@@ -14,7 +14,7 @@ return {
             -- A list of parser names, or "all"
             ensure_installed = {
                 "vimdoc", "lua", "c", "c_sharp", "query",
-                "jsdoc", "typescript", "javascript", "vue", "html"
+                "jsdoc", "typescript", "javascript", "tsx", "vue", "html"
             },
 
             -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -39,7 +39,7 @@ return {
                 additional_vim_regex_highlighting = { "markdown" },
             },
         })
-
+        ---@class treesitter_parser_config: table<string, any>
         local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
         treesitter_parser_config.templ = {
             install_info = {

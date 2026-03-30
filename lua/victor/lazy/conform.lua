@@ -12,11 +12,15 @@ return {
             xml = { "xmlformat" },
             yaml = { "yamlfmt" },
             json = { "jq" },
+            jsonc = { "prettier" },
+            css = { "prettier" },
+            scss = { "prettier" },
             javascript = { "prettier" },
             typescript = { "prettier" },
             javascriptreact = { "prettier" },
             typescriptreact = { "prettier" },
             html = { "prettier" },
+            markdown = { "prettier" },
 
         },
 
@@ -52,11 +56,3 @@ return {
 }
 
 
--- return {
---
---   "sbdch/neoformat",
---   config = function()
---
---
---   end
--- }

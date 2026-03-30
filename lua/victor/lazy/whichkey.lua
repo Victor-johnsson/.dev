@@ -41,13 +41,7 @@ return {
                 desc = "Diagnostic open floating window"
             },
             { "<leader>mir", "<cmd>CellularAutomaton make_it_rain<CR>",     desc = "Make It Rain" },
-            { "<leader>gi",  function() vim.lsp.buf.implementation() end,   desc = "Goto Implementation" },
-
-
-            { "<leader>gr",  function() vim.lsp.buf.references() end,       desc = "References " },
-            { "<leader>gD",  function() vim.lsp.buf.type_definition() end,  desc = "Type definition" },
             { "K",           function() vim.lsp.buf.hover() end,            desc = "Hover signature" },
-            { "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, desc = "Workspace symbols" },
             { "<leader>rn",  function() vim.lsp.buf.rename() end,           desc = "LSP Rename" },
             { "]d",          function() vim.diagnostic.get_next() end,      desc = "Next Diagnostic" },
             { "[d",          function() vim.diagnostic.get_prev() end,      desc = "Previous Diagnostic" },

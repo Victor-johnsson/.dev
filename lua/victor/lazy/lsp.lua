@@ -30,7 +30,6 @@ return {
                 "gopls",
                 "zls",
                 "ts_ls",
-                "pyright",
                 "ruff",
                 "eslint"
             },
@@ -58,13 +57,6 @@ return {
                 end,
 
 
-                copilot = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.copilot.setup({
-                        capabilities = capabilities,
-                    })
-
-                end,
                 zls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
@@ -125,25 +117,6 @@ return {
                         capabilities = capabilities,
                     })
                 end,
-                pyright = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.pyright.setup({
-                        capabilities = capabilities,
-                        settings = {
-                            pyright = {
-                                disableOrganizeImports = false,
-                            },
-                            python = {
-                                analysis = {
-                                    autoImportCompletions = true,
-                                    diagnosticMode = "workspace",
-                                    typeCheckingMode = "basic",
-                                    useLibraryCodeForTypes = true,
-                                },
-                            },
-                        },
-                    })
-                end,
                 ruff = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.ruff.setup({
@@ -162,37 +135,6 @@ return {
                         capabilities = capabilities,
                     })
                 end,
-                -- emmet_ls = function()
-                --     local lspconfig = require("lspconfig")
-                --     lspconfig.emmet_ls.setup({
-                --         capabilities = capabilities,
-                --     })
-                -- end,
-                vim.lsp.config("roslyn", {
-                    settings = {
-                        ["csharp|inlay_hints"] = {
-                            csharp_enable_inlay_hints_for_implicit_object_creation = true,
-                            csharp_enable_inlay_hints_for_implicit_variable_types = true,
-                            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
-                            dotnet_enable_inlay_hints_for_parameter_hints = true
-                        },
-                        ["csharp|code_lens"] = {
-                            dotnet_enable_references_code_lens = true,
-                            dotnet_enable_tests_code_lens = true
-                        },
-                        ["csharp|background_analysis"] = {
-                            dotnet_analyzer_diagnostics_scope = "fullSolution",
-                            dotnet_compiler_diagnostics_scope = "fullSolution",
-
-                        },
-                        ["csharp|completion"] = {
-                            dotnet_show_completion_items_from_unimported_namespaces = true
-                        },
-                        ["csharp|formatting"] = {
-                            dotnet_organize_imports_on_format = true
-                        },
-                    },
-                }),
                 gopls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.gopls.setup({

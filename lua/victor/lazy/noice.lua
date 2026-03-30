@@ -31,7 +31,7 @@ return {
         -- 🔧 Safe patch for Roslyn / servers sending invalid $/progress notifications
         local ok, progress = pcall(require, "noice.lsp.progress")
         if ok then
-            local orig = progress.progress
+           local orig = progress.progress
             progress.progress = function(self, msg, ...)
                 -- Guard against nil msg or nil token
                 if not msg or not msg.token then
