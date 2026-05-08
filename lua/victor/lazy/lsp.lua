@@ -8,7 +8,6 @@ return {
         "L3MON4D3/LuaSnip",
         "ziglang/zig.vim",
         'towolf/vim-helm',
-        "Hoffs/omnisharp-extended-lsp.nvim"
     },
 
     opts = {},
@@ -192,6 +191,10 @@ return {
                         capabilities = capabilities,
                     }
                 end,
+
+                -- roslyn.nvim handles C# — prevent the default handler from
+                -- starting OmniSharp if it happens to be installed in mason
+                omnisharp = function() end,
             },
         })
     end

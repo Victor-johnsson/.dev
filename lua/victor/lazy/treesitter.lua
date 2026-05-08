@@ -32,6 +32,12 @@ return {
                 -- `false` will disable the whole extension
                 enable = true,
 
+                -- Disable treesitter highlighting for markdown to avoid injection query crashes
+                -- (node:range() on invalidated TSNodes via #set-lang-from-info-string!).
+                -- render-markdown.nvim still works via extmarks; regex highlighting covers the rest.
+                -- TODO: remove once the nvim nightly build containing the fix is in use.
+                disable = { "markdown" },
+
                 -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
                 -- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
                 -- Using this option may slow down your editor, and you may see some duplicate highlights.

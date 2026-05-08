@@ -9,9 +9,9 @@ return {
         explorer = {
             enabled = true,
         },
-        image = {
-            enabled = true,
-        },
+        -- image = {
+        --     enabled = true,
+        -- },
         animate = {
             enabled = true,
 
@@ -19,7 +19,18 @@ return {
             easing = "linear",
             fps = 60
         },
-        indent = { enabled = true },
+        indent = {
+            enabled = true,
+            -- Exclude markdown to avoid treesitter injection query crash
+            -- (node:range() on invalidated TSNodes via #set-lang-from-info-string!).
+            -- TODO: remove once the nvim nightly build containing the fix is in use.
+            filter = function(buf, win)
+                return vim.bo[buf].filetype ~= "markdown"
+                    and vim.g.snacks_indent ~= false
+                    and vim.b[buf].snacks_indent ~= false
+                    and vim.bo[buf].buftype == ""
+            end,
+        },
         input = { enabled = true },
         notifier = {
             enabled = true,
@@ -27,7 +38,18 @@ return {
         },
         picker = { enabled = true },
         quickfile = { enabled = true },
-        scope = { enabled = true },
+        scope = {
+            enabled = true,
+            -- Exclude markdown to avoid treesitter injection query crash
+            -- (node:range() on invalidated TSNodes via #set-lang-from-info-string!).
+            -- TODO: remove once the nvim nightly build containing the fix is in use.
+            filter = function(buf)
+                return vim.bo[buf].filetype ~= "markdown"
+                    and vim.bo[buf].buftype == ""
+                    and vim.b[buf].snacks_scope ~= false
+                    and vim.g.snacks_scope ~= false
+            end,
+        },
         scroll = { enabled = true },
         statuscolumn = {
             enabled = true,
